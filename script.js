@@ -51,20 +51,27 @@ const aspectRatios = [
   '1:4', '1:2', '9:16', '2:3', '3:4', '5:6', '1:1', '6:5', '4:3', '3:2', '16:9', '2:1', '4:1'
 ];
 
+// Функция для обновления отображаемых значений
+function updateAspectRatio() {
+  const ratioIndex = document.getElementById('ratio').value;  // Получаем значение индекса ползунка (от 0 до 11)
+  const ratioValue = aspectRatios[ratioIndex];  // Получаем значение по индексу из массива
+  document.getElementById('ratio-value').textContent = ratioValue;  // Обновляем отображаемое значение
+}
+
+function updateStylizeAmount() {
+  const stylizeValue = document.getElementById('stylize').value;  // Получаем значение для Stylize Amount
+  document.getElementById('stylize-value').textContent = stylizeValue;  // Обновляем отображаемое значение
+}
+
 // Обработчик для ползунка Aspect Ratio
 document.getElementById('ratio').addEventListener('input', () => {
-  const ratioIndex = document.getElementById('ratio').value;  // Получаем индекс (от 0 до 11)
-  const ratioValue = aspectRatios[ratioIndex];  // Получаем значение по индексу из массива
-  // Обновляем отображаемое значение
-  document.getElementById('ratio-value').textContent = ratioValue;
+  updateAspectRatio();  // Обновляем отображаемое значение для Aspect Ratio
   saveData();  // Сохраняем данные
 });
 
 // Обработчик для ползунка Stylize Amount
 document.getElementById('stylize').addEventListener('input', () => {
-  const stylizeValue = document.getElementById('stylize').value;
-  // Обновляем отображаемое значение
-  document.getElementById('stylize-value').textContent = stylizeValue;
+  updateStylizeAmount();  // Обновляем отображаемое значение для Stylize Amount
   saveData();  // Сохраняем данные
 });
 
@@ -86,13 +93,12 @@ function loadData() {
   document.getElementById('stylize').value = savedData.stylize || 500;
 
   // Обновляем отображаемые значения после загрузки данных
-  document.getElementById('ratio-value').textContent = aspectRatios[savedData.ratio || 6];  // Загружаем значение для Aspect Ratio
-  document.getElementById('stylize-value').textContent = savedData.stylize;
+  updateAspectRatio();  // Обновляем значение для Aspect Ratio
+  updateStylizeAmount();  // Обновляем значение для Stylize Amount
 }
 
 // Загрузка данных при загрузке страницы
 document.addEventListener('DOMContentLoaded', loadData);
-
 
 // Слушатели для добавления/удаления персонажей
 document.getElementById('add-character').addEventListener('click', () => {
