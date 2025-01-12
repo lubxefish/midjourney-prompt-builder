@@ -46,6 +46,7 @@ function loadData() {
     document.getElementById('characters-container').appendChild(characterDiv);
   });
 }
+
 // Массив значений для Aspect Ratio
 const aspectRatios = [
   '1:4', '1:2', '9:16', '2:3', '3:4', '5:6', '1:1', '6:5', '4:3', '3:2', '16:9', '2:1', '4:1'
@@ -53,7 +54,7 @@ const aspectRatios = [
 
 // Функция для обновления отображаемых значений
 function updateAspectRatio() {
-  const ratioIndex = document.getElementById('ratio').value;  // Получаем значение индекса ползунка (от 0 до 11)
+  const ratioIndex = document.getElementById('ratio').value;  // Получаем значение индекса ползунка (от 0 до 12)
   const ratioValue = aspectRatios[ratioIndex];  // Получаем значение по индексу из массива
   document.getElementById('ratio-value').textContent = ratioValue;  // Обновляем отображаемое значение
 }
@@ -99,6 +100,7 @@ function loadData() {
 
 // Загрузка данных при загрузке страницы
 document.addEventListener('DOMContentLoaded', loadData);
+
 
 // Слушатели для добавления/удаления персонажей
 document.getElementById('add-character').addEventListener('click', () => {
