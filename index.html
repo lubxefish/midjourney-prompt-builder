@@ -1,52 +1,58 @@
-{\rtf1\ansi\ansicpg1251\cocoartf2820
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MidJourney Prompt Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>MidJourney Prompt Builder</h1>
+    <form id="prompt-form">
+      <!-- Основные параметры -->
+      <label>
+        Time of Day:
+        <input type="text" id="time-of-day" placeholder="e.g., Morning">
+      </label>
+      <label>
+        Environment:
+        <input type="text" id="environment" placeholder="e.g., Forest">
+      </label>
+      <label>
+        Activity:
+        <input type="text" id="activity" placeholder="e.g., Painting">
+      </label>
+      <label>
+        Emotion:
+        <input type="text" id="emotion" placeholder="e.g., Happiness">
+      </label>
+      <label>
+        Aspect Ratio:
+        <select id="ratio">
+          <option value="16:9">16:9</option>
+          <option value="4:3">4:3</option>
+          <option value="1:1">1:1</option>
+        </select>
+      </label>
+      <label>
+        Stylize Amount:
+        <input type="number" id="stylize" placeholder="e.g., 1000">
+      </label>
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="en">\
-<head>\
-  <meta charset="UTF-8">\
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-  <title>MidJourney Prompt Builder</title>\
-</head>\
-<body>\
-  <h1>MidJourney Prompt Builder</h1>\
-  <form>\
-    <label>\
-      Time of Day: <input type="text" id="time-of-day">\
-    </label><br>\
-    <label>\
-      Environment: <input type="text" id="environment">\
-    </label><br>\
-    <label>\
-      Activity: <input type="text" id="activity">\
-    </label><br>\
-    <label>\
-      Emotion: <input type="text" id="emotion">\
-    </label><br>\
-    <label>\
-      Aspect Ratio: <input type="text" id="ratio">\
-    </label><br>\
-    <button type="button" onclick="generatePrompt()">Generate Prompt</button>\
-  </form>\
-  <h2>Generated Prompt:</h2>\
-  <textarea id="generated-prompt" readonly></textarea>\
-\
-  <script>\
-    function generatePrompt() \{\
-      const timeOfDay = document.getElementById('time-of-day').value;\
-      const environment = document.getElementById('environment').value;\
-      const activity = document.getElementById('activity').value;\
-      const emotion = document.getElementById('emotion').value;\
-      const ratio = document.getElementById('ratio').value;\
-\
-      const prompt = `$\{timeOfDay\}, $\{environment\}, $\{activity\}, $\{emotion\}, --ar $\{ratio\}`;\
-      document.getElementById('generated-prompt').value = prompt;\
-    \}\
-  </script>\
-</body>\
-</html>\
-}
+      <!-- Управление персонажами -->
+      <h2>Characters</h2>
+      <div id="characters-container"></div>
+      <button type="button" id="add-character">Add Character</button>
+
+      <!-- Генерация промпта -->
+      <button type="button" id="generate-prompt">Generate Prompt</button>
+    </form>
+
+    <h2>Generated Prompt:</h2>
+    <textarea id="generated-prompt" readonly></textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
