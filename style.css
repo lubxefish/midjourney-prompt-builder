@@ -64,3 +64,42 @@ button:hover {
 .character h3 {
   margin-top: 0;
 }
+/* Стили для ползунков */
+input[type="range"] {
+  width: 100%; /* Ширина на всю доступную область */
+  height: 10px; /* Высота полоски */
+  -webkit-appearance: none; /* Убирает стандартный вид в браузерах */
+  appearance: none;
+  border-radius: 5px; /* Округлённые углы */
+  background: #ddd; /* Светлый фон */
+  outline: none; /* Убираем обводку при фокусе */
+  transition: background 0.3s ease; /* Плавное изменение фона */
+}
+
+input[type="range"]:hover {
+  background: #bbb; /* Тёмный фон при наведении */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Убирает стандартную стрелку на ползунке */
+  appearance: none;
+  width: 20px; /* Ширина "ползунка" */
+  height: 20px; /* Высота "ползунка" */
+  border-radius: 50%; /* Круглый ползунок */
+  background: #007BFF; /* Цвет ползунка */
+  cursor: pointer; /* Курсор в виде руки */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #007BFF;
+  cursor: pointer;
+}
+
+span {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: bold;
+}
