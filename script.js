@@ -135,3 +135,38 @@ document.addEventListener('DOMContentLoaded', loadData);
 
 // Автосохранение при изменении
 document.getElementById('prompt-form').addEventListener('input', saveData);
+
+// Массив значений для Aspect Ratio
+const aspectRatios = [
+  '1:4', '1:2', '9:16', '2:3', '3:4', '5:6', '1:1', '6:5', '4:3', '3:2', '16:9', '2:1', '4:1'
+];
+
+// Функция для генерации промпта
+function generatePrompt() {
+  const timeOfDay = document.getElementById('time-of-day').value;
+  const environment = document.getElementById('environment').value;
+  const activity = document.getElementById('activity').value;
+  
+  // Пример получения данных для персонажей
+  let characters = '';
+  const characterElements = document.querySelectorAll('.character');
+  characterElements.forEach((character, index) => {
+    const description = character.querySelector('.character-description').value;
+    const clothing = character.querySelector('.character-clothing').value;
+    characters += `Character ${index + 1}: ${description}, ${clothing}; `;
+  });
+
+  // Получаем значения ползунков
+  const ratio = aspectRatios[document.getElementById('ratio').value];
+  const stylizeAmount = document.getElementById('stylize').value;
+
+  // Формируем строку промпта
+  const prompt = `${timeOfDay}, ${environment}, ${activity}, ${characters} --q 2 --ar ${ratio} --stylize ${stylizeAmount}`;
+
+  // Выводим промпт на экран
+  document.getElementById('generated-prompt').textContent = prompt;
+}
+
+// Обработчик для кнопки "Generate Prompt"
+document.getElementById('generate-prompt').addEventListener('click', generatePrompt);
+
