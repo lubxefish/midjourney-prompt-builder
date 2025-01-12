@@ -53,8 +53,8 @@ const aspectRatios = [
 
 // Обработчик для ползунка Aspect Ratio
 document.getElementById('ratio').addEventListener('input', () => {
-  const ratioIndex = document.getElementById('ratio').value;  // Получаем значение ползунка (индекс)
-  const ratioValue = aspectRatios[ratioIndex];  // Получаем соответствующее значение из массива
+  const ratioIndex = document.getElementById('ratio').value;  // Получаем индекс (от 0 до 11)
+  const ratioValue = aspectRatios[ratioIndex];  // Получаем значение по индексу из массива
   // Обновляем отображаемое значение
   document.getElementById('ratio-value').textContent = ratioValue;
   saveData();  // Сохраняем данные
