@@ -43,3 +43,56 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('generated-prompt').value = prompt;
   });
 });
+// Сохранение данных в localStorage
+function saveData() {
+  const data = {
+    timeOfDay: document.getElementById('time-of-day').value,
+    environment: document.getElementById('environment').value,
+    activity: document.getElementById('activity').value,
+    emotion: document.getElementById('emotion').value,
+    ratio: document.getElementById('ratio').value,
+    stylize: document.getElementById('stylize').value,
+    characters: Array.from(document.querySelectorAll('.character')).map(character => ({
+      description: character.querySelector('.character-description').value,
+      clothing: character.querySelector('.character-clothing').value,
+    })),
+  };
+  localStorage.setItem('promptData', JSON.stringify(data));
+}
+
+// Загрузка данных из localStorage
+function loadData() {
+  const savedData = JSON.parse(localStorage.getItem('promptData'));
+  if (!savedData) return;
+
+  document.getElementById('time-of-day').value = savedData.timeOfDay || '';
+  document.getElementById('environment').value = savedData.environment || '';
+  document.getElementById('activity').value = savedData.activity || '';
+  document.getElementById('emotion').value = savedData.emotion || '';
+  document.getElementById('ratio').value = savedData.ratio || '16:9';
+  document.getElementById('stylize').value = savedData.stylize || '';
+
+  savedData.characters?.forEach((char, index) => {
+    const characterDiv = document.createElement('div');
+    characterDiv.className = 'character';
+    characterDiv.innerHTML = `
+      <h3>Character ${index + 1}</h3>
+      <label>
+        Description:
+        <input type="text" class="character-description" value="${char.description}">
+      </label>
+      <label>
+        Clothing Style:
+        <input type="text" class="character-clothing" value="${char.clothing}">
+      </label>
+      <button type="button" class="remove-character">Remove</button>
+    `;
+    document.getElementById('characters-container').appendChild(characterDiv);
+  });
+}
+
+// Автосохранение при изменении
+document.getElementById('prompt-form').addEventListener('input', saveData);
+
+// Загрузка при загрузке страницы
+document.addEventListener('DOMContentLoaded', loadData);
