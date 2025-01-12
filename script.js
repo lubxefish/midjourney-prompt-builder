@@ -53,7 +53,7 @@ document.getElementById('ratio').addEventListener('input', () => {
   const ratioValue = document.getElementById('ratio').value;
   // Обновляем отображаемое значение
   document.getElementById('ratio-value').textContent = `${(1 / ratioValue).toFixed(2)}:1`;
-  saveData();
+  saveData();  // Сохраняем данные
 });
 
 // Обработчик для ползунка Stylize Amount
@@ -61,8 +61,9 @@ document.getElementById('stylize').addEventListener('input', () => {
   const stylizeValue = document.getElementById('stylize').value;
   // Обновляем отображаемое значение
   document.getElementById('stylize-value').textContent = stylizeValue;
-  saveData();
+  saveData();  // Сохраняем данные
 });
+
 
 // Слушатели для добавления/удаления персонажей
 document.getElementById('add-character').addEventListener('click', () => {
