@@ -52,13 +52,14 @@ const aspectRatios = [
   '1:4', '1:2', '9:16', '2:3', '3:4', '5:6', '1:1', '6:5', '4:3', '3:2', '16:9', '2:1', '4:1'
 ];
 
-// Функция для обновления отображаемых значений
+// Функция для обновления отображаемого значения для Aspect Ratio
 function updateAspectRatio() {
-  const ratioIndex = document.getElementById('ratio').value;  // Получаем значение индекса ползунка (от 0 до 12)
-  const ratioValue = aspectRatios[ratioIndex];  // Получаем значение по индексу из массива
+  const ratioIndex = parseInt(document.getElementById('ratio').value);  // Получаем индекс ползунка
+  const ratioValue = aspectRatios[ratioIndex];  // Получаем строку из массива по индексу
   document.getElementById('ratio-value').textContent = ratioValue;  // Обновляем отображаемое значение
 }
 
+// Функция для обновления отображаемого значения для Stylize Amount
 function updateStylizeAmount() {
   const stylizeValue = document.getElementById('stylize').value;  // Получаем значение для Stylize Amount
   document.getElementById('stylize-value').textContent = stylizeValue;  // Обновляем отображаемое значение
@@ -100,6 +101,7 @@ function loadData() {
 
 // Загрузка данных при загрузке страницы
 document.addEventListener('DOMContentLoaded', loadData);
+
 
 
 // Слушатели для добавления/удаления персонажей
