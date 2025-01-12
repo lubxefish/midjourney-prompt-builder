@@ -28,17 +28,19 @@
         <input type="text" id="emotion" placeholder="e.g., Happiness">
       </label>
       <label>
-        Aspect Ratio:
-        <select id="ratio">
-          <option value="16:9">16:9</option>
-          <option value="4:3">4:3</option>
-          <option value="1:1">1:1</option>
-        </select>
-      </label>
-      <label>
-        Stylize Amount:
-        <input type="number" id="stylize" placeholder="e.g., 1000">
-      </label>
+      <!-- Aspect Ratio (от 1:4 до 4:1) -->
+<label>
+  Aspect Ratio:
+  <input type="range" id="ratio" min="0.25" max="4" step="0.01" value="1" />
+  <span id="ratio-value">1:1</span>
+</label>
+
+<!-- Stylize Amount (от 0 до 1000) -->
+<label>
+  Stylize Amount:
+  <input type="range" id="stylize" min="0" max="1000" step="1" value="500" />
+  <span id="stylize-value">500</span>
+</label>
 
       <!-- Управление персонажами -->
       <h2>Characters</h2>
