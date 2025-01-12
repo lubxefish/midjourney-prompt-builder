@@ -48,15 +48,18 @@ function loadData() {
   });
 }
 
-// Обработчики событий для ползунков
+// Обработчик для ползунка Aspect Ratio
 document.getElementById('ratio').addEventListener('input', () => {
   const ratioValue = document.getElementById('ratio').value;
+  // Обновляем отображаемое значение
   document.getElementById('ratio-value').textContent = `${(1 / ratioValue).toFixed(2)}:1`;
   saveData();
 });
 
+// Обработчик для ползунка Stylize Amount
 document.getElementById('stylize').addEventListener('input', () => {
   const stylizeValue = document.getElementById('stylize').value;
+  // Обновляем отображаемое значение
   document.getElementById('stylize-value').textContent = stylizeValue;
   saveData();
 });
