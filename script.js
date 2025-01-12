@@ -1,4 +1,3 @@
-// Пример с обновлениями
 function saveData() {
   const data = {
     timeOfDay: document.getElementById('time-of-day').value,
@@ -47,12 +46,17 @@ function loadData() {
     document.getElementById('characters-container').appendChild(characterDiv);
   });
 }
+// Массив значений для Aspect Ratio
+const aspectRatios = [
+  '1:4', '1:2', '9:16', '2:3', '3:4', '5:6', '1:1', '6:5', '4:3', '3:2', '16:9', '2:1', '4:1'
+];
 
 // Обработчик для ползунка Aspect Ratio
 document.getElementById('ratio').addEventListener('input', () => {
-  const ratioValue = document.getElementById('ratio').value;
+  const ratioIndex = document.getElementById('ratio').value;  // Получаем значение ползунка (индекс)
+  const ratioValue = aspectRatios[ratioIndex];  // Получаем соответствующее значение из массива
   // Обновляем отображаемое значение
-  document.getElementById('ratio-value').textContent = `${(1 / ratioValue).toFixed(2)}:1`;
+  document.getElementById('ratio-value').textContent = ratioValue;
   saveData();  // Сохраняем данные
 });
 
@@ -63,6 +67,31 @@ document.getElementById('stylize').addEventListener('input', () => {
   document.getElementById('stylize-value').textContent = stylizeValue;
   saveData();  // Сохраняем данные
 });
+
+// Функция сохранения данных
+function saveData() {
+  const data = {
+    ratio: document.getElementById('ratio').value,
+    stylize: document.getElementById('stylize').value,
+  };
+  localStorage.setItem('promptData', JSON.stringify(data));
+}
+
+// Функция загрузки данных
+function loadData() {
+  const savedData = JSON.parse(localStorage.getItem('promptData'));
+  if (!savedData) return;
+
+  document.getElementById('ratio').value = savedData.ratio || 6;  // Загружаем индекс для Aspect Ratio
+  document.getElementById('stylize').value = savedData.stylize || 500;
+
+  // Обновляем отображаемые значения после загрузки данных
+  document.getElementById('ratio-value').textContent = aspectRatios[savedData.ratio || 6];  // Загружаем значение для Aspect Ratio
+  document.getElementById('stylize-value').textContent = savedData.stylize;
+}
+
+// Загрузка данных при загрузке страницы
+document.addEventListener('DOMContentLoaded', loadData);
 
 
 // Слушатели для добавления/удаления персонажей
